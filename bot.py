@@ -91,11 +91,11 @@ class Bot:
                 return await update.message.reply_text("📭 No apps available yet.")
             keyboard = [[InlineKeyboardButton(b['button_name'], callback_data=f"btn_{b['button_id']}")] for b in btns]
             await update.message.reply_text(
-                "🌟 Welcome To Comment Provider Bot By Zahid\n\nPlease select an app:",
+                "🌟 Welcome To Suraj Comment Provider Bot\n\nPlease Choose Which App Comment Do You Want?",
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
         elif u and u.get('rejected'):
-            await update.message.reply_text("❌ Sorry, your approval was rejected. Contact @DTXZAHID")
+            await update.message.reply_text("❌ Approval Rejected Contact @alexx8928 For More Details")
         elif u and u.get('pending'):
             await update.message.reply_text("⏳ Your approval is still pending. Please wait.")
         else:
@@ -152,7 +152,7 @@ class Bot:
             users.update_one({'user_id': uid}, {'$set': {'approved': False, 'pending': False, 'rejected': True}}, upsert=True)
             pending.delete_one({'user_id': uid})
             try:
-                await ctx.bot.send_message(uid, "❌ Your request was rejected. Contact @DTXZAHID")
+                await ctx.bot.send_message(uid, "❌ Approval Rejected Contact @alexx8928 For More Details")
             except:
                 pass
             await query.message.edit_text(query.message.text + "\n\n❌ Rejected")
@@ -275,7 +275,7 @@ class Bot:
         })
         if already:
             await query.message.edit_text(
-                "Already Comment Given Want More Comments? Dm @DTXZAHID",
+                "You Have Already Taken 1 Comment If You Are Bulker/Want More Contact @alexx8928",
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔙 Main Menu", callback_data="main_menu")]])
             )
             return
@@ -510,7 +510,7 @@ class Bot:
                 return
             kb = [[InlineKeyboardButton(b['button_name'], callback_data=f"btn_{b['button_id']}")] for b in btns]
             await q.message.edit_text(
-                "🌟 Welcome To Comment Provider Bot By Zahid\n\nPlease select an app:",
+                "🌟 Welcome To Suraj Comment Provider Bot\n\nPlease Choose Which App Comment Do You Want?",
                 reply_markup=InlineKeyboardMarkup(kb)
             )
             return
